@@ -2,6 +2,7 @@ package javaDenemeProjeleri.proje1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
@@ -23,27 +24,29 @@ public class Main {
 		malzemeList.put(155, "Mouse");
 		malzemeList.put(135, "Keyboard");
 
-		System.out.println("Malzeme Listesi Yazdýrýlýyor.");
-
-		for (Integer i : malzemeList.keySet()) {
-			printObj(i, malzemeList.get(i));
-		}
-
 		String okulAdi = "ytu";
-		System.out.println("Okul Adý Yazdýrýlýyor.");
+
+		printObj(malzemeList);
 		printObj(okulAdi);
 
 	}
 
-	static void printObj(Ogrenci ogrenci) {
-		System.out.println("No : " + ogrenci.getNo() + ", Ad : " + ogrenci.getAd() + ", Bölüm : " + ogrenci.getBolum());
-	}
+	static void printObj(Object object) {
+		if (object instanceof Ogrenci) {
+			System.out.println(" No : " + ((Ogrenci) object).getNo() + ", Ad : " + ((Ogrenci) object).getAd()
+					+ ", Bolum : " + ((Ogrenci) object).getBolum());
+		}
+		if (object instanceof HashMap<?, ?>) {
+			System.out.println("Malzeme Listesi Yazdýrýlýyor.");
+			for (Map.Entry<?, ?> entry : ((HashMap<?, ?>) object).entrySet()) {
+				Object no = entry.getKey();
+				Object ad = entry.getValue();
+				System.out.println(" No : " + no + ", Ad : " + ad);
+			}
+		}
 
-	static void printObj(String okulAdi) {
-		System.out.println("Okul Adý : " + okulAdi);
-	}
-
-	static void printObj(int key, String value) {
-		System.out.println("No : " + key + ", Ad : " + value);
+		if (object instanceof String) {
+			System.out.println("Okul Adý Yazdýrýlýyor.\n Okul Adý : " + object);
+		}
 	}
 }

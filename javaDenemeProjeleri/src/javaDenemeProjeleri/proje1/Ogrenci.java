@@ -2,6 +2,11 @@ package javaDenemeProjeleri.proje1;
 
 public class Ogrenci {
 
+	@Override
+	public String toString() {
+		return "No : " + no + ", Ad : " + ad + ", Bölüm : " + bolum + "]";
+	}
+
 	private int no;
 	private String ad;
 	private String bolum;
